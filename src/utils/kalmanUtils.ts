@@ -1,15 +1,16 @@
-import {BLENode} from "../models/device/BLENodeModel";
+//import {BLENode} from "../models/device/BLENodeModel";
 import KalmanFilter from "./KalmanFilter";
-import trableConfig from "../config/config";
+import {config} from "node-config-ts";
 
 var kalmanFiltersMap: Map<String, KalmanFilter> = new Map()
 
-export const defaultKalmanFilter = new KalmanFilter({ R: trableConfig.nodeConfig.kalman.R, Q: trableConfig.nodeConfig.kalman.Q })
+export const defaultKalmanFilter = new KalmanFilter({ R: config.nodeConfig.kalman.R, Q: config.nodeConfig.kalman.Q })
 
-/** @deprecated */
+/** @deprecated */ /*
 export function getKalmanFilter(node: BLENode) {
     if (!kalmanFiltersMap.has(node._id)) {
        kalmanFiltersMap.set(node._id, defaultKalmanFilter)
     }
     return kalmanFiltersMap.get(node._id)
 }
+*/
