@@ -4,6 +4,7 @@ import sentryLogger from "./loaders/sentryLogger";
 import axios, {AxiosInstance} from 'axios'
 import AuthManager from "./managers/AuthManager";
 import DeviceManager from "./managers/DeviceManager";
+import {hashids} from "./utils/hashIdUtil";
 
 export class TrableApp {
     readonly config: IConfig
@@ -27,6 +28,12 @@ export class TrableApp {
 
     public start() {
         this.registerModules()
+
+
+
+        console.log(hashids.encode(21452))
+        console.log(hashids.encodeHex("53CC"))
+
         return this
     }
 

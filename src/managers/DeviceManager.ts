@@ -5,7 +5,6 @@ import currentEpochSeconds from "../utils/currentEpochSeconds";
 import {app} from "../app";
 
 export class DeviceManager {
-
     async setupScanning() {
         noble.on('discover', this.handleScannedPeripheral.bind(this));
         await noble.startScanningAsync([], true)
@@ -23,7 +22,7 @@ export class DeviceManager {
         }
 
         // Need to decode the provided id to the full hex ObjectId first
-        const id = hashids.decodeHex(name.slice(6))
+        const id = this.decodeOrFetchCached(name.slice(6))
 
         const txPower: number | undefined = peripheral.advertisement.txPowerLevel
         const rssi = peripheral.rssi
@@ -37,7 +36,7 @@ export class DeviceManager {
         logger.debug("============================================")
     }
 
-    public submitRSSI(clientId: string, txPower: number | undefined, rssi: number, timestamp: number) {
+    public async submitRSSI(clientId: string, txPower: number | undefined, rssi: number, timestamp: number) {
         app.apiClient.post('api/v1/location/submitRSSI', {
             targetId: clientId,
             rssi: rssi,
@@ -46,6 +45,16 @@ export class DeviceManager {
         }).catch(err => {
             logger.error("Failed to submit RSSI measurement: " + err.toString())
         })
+    }
+
+    private idCache: Map<string, string> = new Map();
+    private decodeOrFetchCached(decodedName: string) {
+        return this.idCache.get(decodedName) ?? this._decode(decodedName)
+    }
+    private _decode(name: string): string {
+        const decoded = hashids.decodeHex(name);
+        this.idCache.set(name, decoded)
+        return decoded
     }
 }
 
