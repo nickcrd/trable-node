@@ -27,6 +27,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
+    "enquirer": "^2.3.6",
     "express": "~4.16.1",
     "hashids": "^2.2.1",
     "http-errors": "~1.6.3",
@@ -62,5 +63,8 @@
     "eslint": "^7.4.0",
     "mocha": "^8.0.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "pkg": {
+    "scripts": "out/**/*.js"
+  }
 }

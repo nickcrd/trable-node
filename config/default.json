@@ -2,13 +2,9 @@
   "trableMasterUrl": "http://localhost:8080/",
   "apiKey": "your-api-key-here",
   "sentryUrl": null,
-  "configLevel": "debug",
+  "loggerLevel": "debug",
   "nodeConfig": {
-    "defaultTxPower": 2,
-    "minMeasurements": 5,
-    "kalman": {
-      "R": 0.008,
-      "Q": 4
-    }
+    "rssiAt1m": -48,
+    "pathLossParam": 5
   }
 }

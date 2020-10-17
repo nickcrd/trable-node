@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-import "./app";
+import "./app"
 process.stdin.resume();

@@ -7,7 +7,7 @@ export class AuthManager {
     public async verifyApiKey() {
         try {
             const response = await app.apiClient.get<GenericResponse>('api/v1/devices/heartbeat')
-            logger.info("Connected to Master Node.")
+            logger.info("Connected to Master.")
         } catch (error) {
             if (error.response) {
                 logger.error("Invalid API Key: " + JSON.stringify(error.response.data) ?? "")

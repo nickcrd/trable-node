@@ -5,17 +5,12 @@ declare module "node-config-ts" {
     trableMasterUrl: string
     apiKey: string
     sentryUrl?: any
-    configLevel: string
+    loggerLevel: string
     nodeConfig: NodeConfig
   }
   interface NodeConfig {
-    defaultTxPower: number
-    minMeasurements: number
-    kalman: Kalman
-  }
-  interface Kalman {
-    R: number
-    Q: number
+    rssiAt1m: number
+    pathLossParam: number
   }
   export const config: Config
   export type Config = IConfig

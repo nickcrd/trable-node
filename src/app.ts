@@ -21,19 +21,14 @@ export class TrableApp {
         })
     }
 
-    public registerModules() {
-        AuthManager.verifyApiKey()
-        DeviceManager.setupScanning()
+    public async registerModules() {
+        await AuthManager.verifyApiKey()
+        await DeviceManager.setupScanning()
     }
 
-    public start() {
-        this.registerModules()
-
-
-
-        console.log(hashids.encode(21452))
-        console.log(hashids.encodeHex("53CC"))
-
+    public async start() {
+        await this.registerModules()
+        logger.info("Trable Node has successfully started")
         return this
     }
 
